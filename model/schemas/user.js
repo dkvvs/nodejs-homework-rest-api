@@ -24,14 +24,12 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Password required"],
     },
-
     avatarURL: {
       type: String,
       default: function () {
         return gravatar.url(this.email, { s: "250" }, true);
       },
     },
-
     subscription: {
       type: String,
       enum: {
@@ -40,10 +38,17 @@ const userSchema = new Schema(
       },
       default: Subscription.FREE,
     },
-
     token: {
       type: String,
       default: null,
+    },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verifyToken: {
+      type: String,
+      required: [true, "Verify token required"],
     },
   },
   { versionKey: false, timestamps: true }
